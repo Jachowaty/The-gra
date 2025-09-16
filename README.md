@@ -1,1 +1,1 @@
-# PROJOP-Gra
+# PROJOP Projekt Aplikacji
