@@ -1,1 +1,7 @@
-# PROJOP Projekt Aplikacji
+# Cel
+
+
+# Zasada działania
+
+
+# Interakcja z użytkownikiem
