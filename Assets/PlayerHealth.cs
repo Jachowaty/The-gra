@@ -12,7 +12,7 @@ public class PlayerHealth : MonoBehaviour
     private SpriteRenderer spriteRenderer;
 
     public static event Action OnPlayerDeath;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     void Start()
     {
         ResetHealth();

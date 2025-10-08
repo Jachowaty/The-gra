@@ -20,13 +20,13 @@ public class PlayerMovement : MonoBehaviour
     public float baseGravity = 2f;
     public float maxFallSpeed = 18f;
     public float fallSpeedMult = 2f;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     void Start()
     {
 
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         rb.linearVelocity = new Vector2(horizontalMovement * moveSpeed, rb.linearVelocity.y);
