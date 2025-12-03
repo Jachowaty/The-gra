@@ -22,11 +22,27 @@ public class PlayerHealth : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Trap trap = collision.GetComponent<Trap>();
+
         if(trap)
         {
             TakeDamage(trap.Damage);
         }
+
+        
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        
+        EnemyAI enemy = collision.gameObject.GetComponent<EnemyAI>();
+
+        if(enemy)
+        {
+            TakeDamage(enemy.Damage);
+        }
+
+        
+    }
+    
 
     void ResetHealth()
     {

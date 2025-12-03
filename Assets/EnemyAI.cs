@@ -2,8 +2,10 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
+    public int Damage = 1;
     public float moveSpeed = 3f;
     public float jumpForce = 8f;
+    public float detectionRange = 10f;
     public float wallCheckDistance = 2.5f;
     public float groundCheckDistance = 1.5f;
     public LayerMask groundLayer;
@@ -26,10 +28,18 @@ public class EnemyAI : MonoBehaviour
     {
         if (player == null) return;
 
-        float distToPlayer = player.position.x - transform.position.x;
-        float direction = Mathf.Sign(distToPlayer);
+        float distanceToPlayer = Vector2.Distance(transform.position, player.position);
 
-        if (Mathf.Abs(distToPlayer) > 0.5f)
+        if (distanceToPlayer > detectionRange)
+        {
+            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
+            return;
+        }
+
+        float distX = player.position.x - transform.position.x;
+        float direction = Mathf.Sign(distX);
+
+        if (Mathf.Abs(distX) > 0.5f)
         {
             rb.linearVelocity = new Vector2(direction * moveSpeed, rb.linearVelocity.y);
             transform.localScale = new Vector3(direction, 1, 1);
@@ -56,5 +66,8 @@ public class EnemyAI : MonoBehaviour
 
         Gizmos.color = Color.green;
         Gizmos.DrawLine(transform.position, transform.position + Vector3.down * groundCheckDistance);
+
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, detectionRange);
     }
 }
