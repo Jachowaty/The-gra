@@ -7,23 +7,37 @@ public class EnemyHealth : MonoBehaviour
     private float currentHealth;
     private SpriteRenderer spriteRenderer;
     private Color originalColor;
-    
+
     void Start()
     {
         currentHealth = maxHealth;
         spriteRenderer = GetComponent<SpriteRenderer>();
         originalColor = spriteRenderer.color;
+        
+        GameController.OnReset += ResetEnemyHealth;
     }
-    
+
+    void OnDestroy()
+    {
+        GameController.OnReset -= ResetEnemyHealth;
+    }
+
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
         StartCoroutine(FlashRed());
-        
         if (currentHealth <= 0)
-            Destroy(gameObject);
+        {
+            gameObject.SetActive(false);
+        }
     }
-    
+
+    void ResetEnemyHealth()
+    {
+        currentHealth = maxHealth;
+        spriteRenderer.color = originalColor;
+    }
+
     private IEnumerator FlashRed()
     {
         spriteRenderer.color = Color.red;

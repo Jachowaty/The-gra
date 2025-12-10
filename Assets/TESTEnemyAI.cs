@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
-    public int Damage = 1;
+    public int damage = 1;
     public float moveSpeed = 3f;
     public float jumpForce = 8f;
     public float detectionRange = 10f;
@@ -13,15 +13,33 @@ public class EnemyAI : MonoBehaviour
 
     private Rigidbody2D rb;
     private Transform player;
+    private Vector3 startPos;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        startPos = transform.position;
+        
+        GameController.OnReset += ResetEnemy;
+
         GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
         if (playerObj != null)
         {
             player = playerObj.transform;
         }
+    }
+
+    void OnDestroy()
+    {
+        GameController.OnReset -= ResetEnemy;
+    }
+
+    void ResetEnemy()
+    {
+        transform.position = startPos;
+        gameObject.SetActive(true);
+        rb.linearVelocity = Vector2.zero;
+        transform.localScale = new Vector3(1, 1, 1);
     }
 
     void Update()
