@@ -21,11 +21,19 @@ public class PlayerHealth : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Trap trap = collision.GetComponent<Trap>();
+        EnemyProjectile projectile = collision.GetComponent<EnemyProjectile>();
 
         if(trap)
         {
             TakeDamage(trap.damage);
             playerMovement.ApplyKnockback(collision.transform.position);
+        }
+
+        if(projectile)
+        {
+            TakeDamage(projectile.damage);
+            playerMovement.ApplyKnockback(collision.transform.position);
+            Destroy(collision.gameObject);
         }
     }
 
