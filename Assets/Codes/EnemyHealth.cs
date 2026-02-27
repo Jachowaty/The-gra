@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-    public float maxHealth = 3f;
-    private float currentHealth;
+    public int maxHealth = 3;
+    private int currentHealth;
     private SpriteRenderer spriteRenderer;
     private Color originalColor;
 
@@ -22,7 +22,7 @@ public class EnemyHealth : MonoBehaviour
         GameController.OnReset -= ResetEnemyHealth;
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(int damage)
     {
         currentHealth -= damage;
         StartCoroutine(FlashRed());

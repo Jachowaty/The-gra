@@ -113,6 +113,7 @@ MonoBehaviour:
   speed: 10
   damage: 1
   lifetime: 5
+  hoverTime: 0.5
 --- !u!212 &-8794832245854546032
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -158,7 +159,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 545115549763983130, guid: 15858f569aa4fa0458a733518017f337, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
