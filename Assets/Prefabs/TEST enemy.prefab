@@ -189,9 +189,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37452e07adbc4cb4299f70e32d1606aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 1
   moveSpeed: 3
-  jumpForce: 90
-  wallCheckDistance: 1.5
+  jumpForce: 8
+  detectionRange: 10
+  wallCheckDistance: 2.5
   groundCheckDistance: 1.5
   groundLayer:
     serializedVersion: 2
@@ -199,3 +201,5 @@ MonoBehaviour:
   wallLayer:
     serializedVersion: 2
     m_Bits: 1
+  acceleration: 40
+  deceleration: 50

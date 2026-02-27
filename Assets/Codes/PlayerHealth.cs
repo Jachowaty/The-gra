@@ -44,12 +44,12 @@ public class PlayerHealth : MonoBehaviour
 
         if(enemy)
         {
-            TakeDamage(enemy.damage);
+            TakeDamage(enemy.settings.damage);
             playerMovement.ApplyKnockback(collision.transform.position);
         }
         else if(dashEnemy)
         {
-            TakeDamage(dashEnemy.damage);
+            TakeDamage(dashEnemy.settings.damage);
             playerMovement.ApplyKnockback(collision.transform.position);
         }
     }

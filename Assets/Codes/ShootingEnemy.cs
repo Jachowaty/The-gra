@@ -2,10 +2,8 @@ using UnityEngine;
 
 public class ShootingEnemy : MonoBehaviour
 {
+    public ShootingEnemySettings settings;
     public GameObject projectilePrefab;
-    public float detectionRange = 10f;
-    public float fireRate = 2f;
-    public Vector2 shootOffset = new Vector2(0f, 0.5f);
 
     private Transform player;
     private float nextFireTime;
@@ -41,7 +39,7 @@ public class ShootingEnemy : MonoBehaviour
 
         float distance = Vector2.Distance(transform.position, player.position);
 
-        if (distance <= detectionRange)
+        if (distance <= settings.detectionRange)
         {
             float direction = Mathf.Sign(player.position.x - transform.position.x);
             transform.localScale = new Vector3(direction, 1, 1);
@@ -49,27 +47,29 @@ public class ShootingEnemy : MonoBehaviour
             if (Time.time >= nextFireTime)
             {
                 Shoot();
-                nextFireTime = Time.time + fireRate;
+                nextFireTime = Time.time + settings.fireRate;
             }
         }
     }
 
     void Shoot()
     {
-        Vector3 spawnPos = transform.position + (Vector3)shootOffset;
+        Vector3 spawnPos = transform.position + (Vector3)settings.shootOffset;
         Vector3 direction = (player.position - spawnPos).normalized;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
         GameObject newProjectile = Instantiate(projectilePrefab, spawnPos, Quaternion.Euler(0, 0, angle));
-        
         newProjectile.transform.SetParent(transform);
     }
 
     void OnDrawGizmosSelected()
     {
+        if (settings == null) return;
+
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, detectionRange);
+        Gizmos.DrawWireSphere(transform.position, settings.detectionRange);
+
         Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position + (Vector3)shootOffset, 0.2f);
+        Gizmos.DrawWireSphere(transform.position + (Vector3)settings.shootOffset, 0.2f);
     }
 }
