@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 450821746214610928}
   - component: {fileID: 3203963220048683997}
   - component: {fileID: 5710052945921838038}
-  - component: {fileID: -8337623553291042820}
+  - component: {fileID: 7060282278269015639}
   m_Layer: 6
-  m_Name: TEST enemy
+  m_Name: enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,8 +29,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 795860133271666054}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.01, y: -0.14, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -37.22402, y: -7.1817746, z: 0.0500213}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -80,7 +80,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: -1068718191, guid: 15858f569aa4fa0458a733518017f337, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -125,17 +125,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.0014288425, y: -0.1986149}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1.0666667, y: 1.0666667}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.6827874, y: 0.68850315}
   m_EdgeRadius: 0
 --- !u!114 &3203963220048683997
 MonoBehaviour:
@@ -166,7 +166,7 @@ Rigidbody2D:
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 198033672a286cb45b06265f95954eb0, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -177,7 +177,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &-8337623553291042820
+--- !u!114 &7060282278269015639
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -189,17 +189,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37452e07adbc4cb4299f70e32d1606aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
-  moveSpeed: 3
-  jumpForce: 8
-  detectionRange: 10
-  wallCheckDistance: 2.5
-  groundCheckDistance: 1.5
+  settings: {fileID: 11400000, guid: 2d20ce793aa94af4ab65f780fe2988fe, type: 2}
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
   wallLayer:
     serializedVersion: 2
     m_Bits: 1
-  acceleration: 40
-  deceleration: 50

@@ -29,8 +29,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 795860133271666054}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.01, y: -0.14, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.47, y: -3.56, z: 0.0500213}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -125,7 +125,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.0010118484, y: -0.20032948}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -135,7 +135,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.6782589, y: 0.6762351}
   m_EdgeRadius: 0
 --- !u!114 &3203963220048683997
 MonoBehaviour:
@@ -189,15 +189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4805360b50b0ae74e9456d43c6b5084a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
-  moveSpeed: 3
-  dashSpeed: 20
-  dashRange: 7.5
-  attackTriggerRange: 5
-  detectionRange: 10
-  chargeTime: 0.5
-  cooldownTime: 1.5
-  shakeIntensity: 0.1
+  settings: {fileID: 11400000, guid: d9e39893209ee8646a581b8c59f1346c, type: 2}
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
