@@ -11,6 +11,7 @@ Krótki samouczek
 
 
 Twórcy grafik:
+
 https://www.kenney.nl/assets/1-bit-platformer-pack
 
 https://luizmelo.itch.io/evil-wizard-2
