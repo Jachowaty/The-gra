@@ -147,26 +147,32 @@ private float currentSpeed;
         }
     }
 
-    public void ApplyKnockback(Vector2 sourcePosition)
+        public void ApplyKnockback(Vector2 sourcePosition)
     {
         if (isKnockedBack) return;
-        StartCoroutine(KnockbackRoutine(sourcePosition));
+        StartCoroutine(KnockbackRoutine(sourcePosition, knockbackForce));
     }
 
-    private IEnumerator KnockbackRoutine(Vector2 sourcePosition)
+    public void ApplyKnockback(Vector2 sourcePosition, float force)
+    {
+        if (isKnockedBack) return;
+        StartCoroutine(KnockbackRoutine(sourcePosition, force));
+    }
+
+    private IEnumerator KnockbackRoutine(Vector2 sourcePosition, float force)
     {
         isKnockedBack = true;
         animator.SetFloat("magnitude", 0);
 
         Vector2 direction = (transform.position - (Vector3)sourcePosition).normalized;
-        Vector2 knockbackVector = new Vector2(Mathf.Sign(direction.x) * knockbackForce, knockbackForce * 0.5f);
+        Vector2 knockbackVector = new Vector2(Mathf.Sign(direction.x) * force, force * 0.5f);
 
         rb.linearVelocity = knockbackVector;
 
         yield return new WaitForSeconds(knockbackDuration);
 
         isKnockedBack = false;
-        currentSpeed = 0f; 
+        currentSpeed = 0f;
         rb.linearVelocity = Vector2.zero;
     }
 

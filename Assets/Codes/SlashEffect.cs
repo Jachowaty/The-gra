@@ -53,32 +53,28 @@ public class SlashEffect : MonoBehaviour
         }
     }
 
-void OnTriggerEnter2D(Collider2D collision)
-{
-    Debug.Log("Slash hit: " + collision.gameObject.name);
-
-    EnemyHealth enemy = collision.GetComponent<EnemyHealth>();
-    if (enemy != null)
+    void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Hit enemy!");
-        enemy.TakeDamage(damage);
-        return;
-    }
+        EnemyHealth enemy = collision.GetComponent<EnemyHealth>();
+        if (enemy != null)
+        {
+            enemy.TakeDamage(damage);
+            return;
+        }
 
-    Trap trap = collision.GetComponent<Trap>();
-    if (trap != null)
-    {
-        Debug.Log("Hit trap!");
-        if (playerRb != null)
+        Boss boss = collision.GetComponent<Boss>();
+        if (boss != null)
+        {
+            boss.TakeDamage(damage);
+            return;
+        }
+
+        Trap trap = collision.GetComponent<Trap>();
+        if (trap != null && playerRb != null)
         {
             BouncePlayer(collision.transform.position);
         }
-        else
-        {
-            Debug.Log("No player rigidbody!");
-        }
     }
-}
 
     void BouncePlayer(Vector3 trapPosition)
     {
