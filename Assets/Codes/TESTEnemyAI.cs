@@ -44,7 +44,7 @@ public class EnemyAI : MonoBehaviour
     {
         if (player == null) return;
 
-        float distanceToPlayer = Vector2.Distance(transform.position, player.position);
+        float distanceToPlayer = GetDistanceToPlayer();
 
         if (distanceToPlayer > settings.detectionRange)
         {
@@ -95,5 +95,16 @@ public class EnemyAI : MonoBehaviour
 
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, settings.detectionRange);
+    }
+    float GetDistanceToPlayer()
+    {
+        Collider2D playerCollider = player.GetComponent<Collider2D>();
+
+        if (playerCollider != null)
+        {
+            return Vector2.Distance(transform.position, playerCollider.ClosestPoint(transform.position));
+        }
+
+        return Vector2.Distance(transform.position, player.position);
     }
 }

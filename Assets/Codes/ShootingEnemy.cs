@@ -72,4 +72,5 @@ public class ShootingEnemy : MonoBehaviour
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position + (Vector3)settings.shootOffset, 0.2f);
     }
+    
 }

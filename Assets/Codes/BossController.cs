@@ -121,7 +121,7 @@ public class Boss : MonoBehaviour
         if (healthBar == null) return;
         if (player == null) return;
 
-        float distToPlayer = Vector2.Distance(transform.position, player.position);
+        float distToPlayer = GetDistanceToPlayer();
 
         if (distToPlayer <= healthBarRange && !healthBarVisible)
         {
@@ -152,7 +152,7 @@ public class Boss : MonoBehaviour
         if (player == null) return;
         if (isAttacking) return;
 
-        float distToPlayer = Vector2.Distance(transform.position, player.position);
+        float distToPlayer = GetDistanceToPlayer();
         float direction = Mathf.Sign(player.position.x - transform.position.x);
 
         Vector3 currentScale = transform.localScale;
@@ -182,7 +182,7 @@ public class Boss : MonoBehaviour
         if (!isGrounded) return;
         if (player == null) return;
 
-        float distToPlayer = Vector2.Distance(transform.position, player.position);
+        float distToPlayer = GetDistanceToPlayer();
 
         if (Time.time >= lastAttackTime + attackCooldown && distToPlayer <= attackRange)
         {
@@ -293,5 +293,16 @@ public class Boss : MonoBehaviour
 
         Gizmos.color = Color.white;
         Gizmos.DrawWireCube(groundCheckPos.position, groundCheckSize);
+    }
+    float GetDistanceToPlayer()
+    {
+        Collider2D playerCollider = player.GetComponent<Collider2D>();
+
+        if (playerCollider != null)
+        {
+            return Vector2.Distance(transform.position, playerCollider.ClosestPoint(transform.position));
+        }
+
+        return Vector2.Distance(transform.position, player.position);
     }
 }

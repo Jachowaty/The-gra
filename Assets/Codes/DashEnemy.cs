@@ -51,7 +51,7 @@ public class DashEnemy : MonoBehaviour
         if (player == null) return;
         if (isAttacking) return;
 
-        float distToPlayer = Vector2.Distance(transform.position, player.position);
+        float distToPlayer = GetDistanceToPlayer();
 
         if (distToPlayer > settings.detectionRange)
         {
@@ -132,5 +132,16 @@ public class DashEnemy : MonoBehaviour
         Gizmos.color = Color.blue;
         float dir = transform.localScale.x;
         Gizmos.DrawLine(transform.position, transform.position + new Vector3(dir * settings.dashRange, 0, 0));
+    }
+    float GetDistanceToPlayer()
+    {
+        Collider2D playerCollider = player.GetComponent<Collider2D>();
+
+        if (playerCollider != null)
+        {
+            return Vector2.Distance(transform.position, playerCollider.ClosestPoint(transform.position));
+        }
+
+        return Vector2.Distance(transform.position, player.position);
     }
 }
