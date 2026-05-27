@@ -16,12 +16,14 @@ https://github.com/Jachowaty/The-gra-build  - wersja grywalna
 # Twórcy grafik i dźwieków:
 
 Grafiki: 
+
 https://www.kenney.nl/assets/1-bit-platformer-pack
 
 https://luizmelo.itch.io/evil-wizard-2
 
 
 Audio: 
+
 https://leohpaz.itch.io/rpg-essentials-sfx-free
 
 https://leohpaz.itch.io/minifantasy-dungeon-sfx-pack
