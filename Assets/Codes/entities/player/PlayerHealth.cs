@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
+    private PlayerSounds playerSounds;
     public int maxHealth = 3;
     private int currentHealth;
 
@@ -13,6 +14,7 @@ public class PlayerHealth : MonoBehaviour
 
     void Start()
     {
+        playerSounds = GetComponent<PlayerSounds>();
         playerMovement = GetComponent<PlayerMovement>();
         ResetHealth();
         GameController.OnReset += ResetHealth;
@@ -64,8 +66,9 @@ public class PlayerHealth : MonoBehaviour
     {
         currentHealth -= damage;
         healthUI.UpdateHearts(currentHealth);
+        if (playerSounds != null) playerSounds.PlayHurtSound();
 
-        if(currentHealth <= 0 )
+        if (currentHealth <= 0)
         {
             OnPlayerDeath.Invoke();
         }

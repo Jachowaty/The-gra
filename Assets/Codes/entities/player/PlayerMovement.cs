@@ -1,42 +1,62 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 public class PlayerMovement : MonoBehaviour
 {
-public Rigidbody2D rb;
-public Animator animator;
+    [Header("References")]
+    public Rigidbody2D rb;
+    public Animator animator;
 
-public Vector2 moveInput;
+    [Header("Movement")]
+    public float moveSpeed = 8.5f;
+    public float acceleration = 60f;
+    public float deceleration = 200f;
+    private float currentSpeed;
+    public Vector2 moveInput;
 
-public float moveSpeed = 8.5f;
-public float jumpPower = 14f;
-public int maxJumps = 1;
-int jumpsRemaining;
+    [Header("Jumping")]
+    public float jumpPower = 14f;
+    public int maxJumps = 1;
+    private int jumpsRemaining;
 
-public Transform groundCheckPos;
-public Vector2 groundCheckSize = new Vector2(0.5f, 0.05f);
-public LayerMask groundLayer;
+    [Header("Ground Check")]
+    public Transform groundCheckPos;
+    public Vector2 groundCheckSize = new Vector2(0.5f, 0.05f);
+    public LayerMask groundLayer;
 
-public float baseGravity = 3f;
-public float maxFallSpeed = 20f;
-public float fallSpeedMult = 2.5f;
+    [Header("Gravity")]
+    public float baseGravity = 3f;
+    public float maxFallSpeed = 20f;
+    public float fallSpeedMult = 2.5f;
 
-public float knockbackForce = 8f;
-public float knockbackDuration = 0.15f;
-public bool isKnockedBack;
-
-public float acceleration = 100f;
-public float deceleration = 1000f;
-private float currentSpeed;
+    [Header("Knockback")]
+    public float knockbackForce = 8f;
+    public float knockbackDuration = 0.15f;
+    public bool isKnockedBack;
 
     public bool IsGrounded { get; private set; }
+
+    private PlayerSounds playerSounds;
+    private Vector3 startPosition;
+
+    void Awake()
+    {
+        startPosition = transform.position;
+        Checkpoint.Initialize(startPosition);
+    }
 
     void Start()
     {
         animator = GetComponent<Animator>();
-        rb.interpolation = RigidbodyInterpolation2D.Interpolate; 
+        rb.interpolation = RigidbodyInterpolation2D.Interpolate;
+        playerSounds = GetComponent<PlayerSounds>();
+        GameController.OnReset += Respawn;
+    }
+
+    void OnDestroy()
+    {
+        GameController.OnReset -= Respawn;
     }
 
     void Update()
@@ -64,7 +84,7 @@ private float currentSpeed;
         }
         else
         {
-            currentSpeed = Mathf.MoveTowards(currentSpeed, 0, deceleration * Time.fixedDeltaTime);
+            currentSpeed = 0f;
         }
 
         rb.linearVelocity = new Vector2(currentSpeed, rb.linearVelocity.y);
@@ -126,6 +146,7 @@ private float currentSpeed;
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpPower);
                 jumpsRemaining--;
                 animator.SetTrigger("jump");
+                if (playerSounds != null) playerSounds.PlayJumpSound();
             }
             else if (context.canceled && rb.linearVelocity.y > 0)
             {
@@ -147,7 +168,7 @@ private float currentSpeed;
         }
     }
 
-        public void ApplyKnockback(Vector2 sourcePosition)
+    public void ApplyKnockback(Vector2 sourcePosition)
     {
         if (isKnockedBack) return;
         StartCoroutine(KnockbackRoutine(sourcePosition, knockbackForce));
@@ -174,6 +195,16 @@ private float currentSpeed;
         isKnockedBack = false;
         currentSpeed = 0f;
         rb.linearVelocity = Vector2.zero;
+    }
+
+    void Respawn()
+    {
+        Vector3 pos = Checkpoint.GetSpawnPosition(startPosition);
+        Debug.Log("Respawning at: " + pos);
+        transform.position = pos;
+        rb.linearVelocity = Vector2.zero;
+        currentSpeed = 0f;
+        jumpsRemaining = maxJumps;
     }
 
     private void OnDrawGizmosSelected()

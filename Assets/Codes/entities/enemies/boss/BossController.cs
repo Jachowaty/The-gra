@@ -3,8 +3,15 @@ using System.Collections;
 
 public class Boss : MonoBehaviour
 {
+
+    [Header("End Screen")]
+    public EndScreen endScreen;
+
+    [Header("Music")]
+    public MusicManager musicManager;
+
     [Header("Health")]
-    public int maxHealth = 5;
+    public int maxHealth = 50;
     private int currentHealth;
     private bool isDead;
     public BossHealthBar healthBar;
@@ -127,11 +134,13 @@ public class Boss : MonoBehaviour
         {
             healthBarVisible = true;
             healthBar.FadeIn();
+            if (musicManager != null) musicManager.StartBossMusic();
         }
         else if (distToPlayer > healthBarRange && healthBarVisible)
         {
             healthBarVisible = false;
             healthBar.FadeOut();
+            if (musicManager != null) musicManager.StopBossMusic();
         }
     }
 
@@ -261,7 +270,11 @@ public class Boss : MonoBehaviour
             healthBar.FadeOut();
         }
 
-        // StartCoroutine(DestroyAfterAnimation());
+        if (musicManager != null) musicManager.SlowFadeBossMusic();
+
+        if (endScreen != null) endScreen.ShowScreen();
+
+        StartCoroutine(DestroyAfterAnimation());
     }
 
     IEnumerator DestroyAfterAnimation()

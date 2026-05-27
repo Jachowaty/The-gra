@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-    public int maxHealth = 3;
+    public int maxHealth = 10;
     private int currentHealth;
     private SpriteRenderer spriteRenderer;
     private Color originalColor;

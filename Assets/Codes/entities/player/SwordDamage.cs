@@ -5,7 +5,7 @@ public class SwordDamage : MonoBehaviour
     private SwordController swordController;
 
     [Header("Hit Settings")]
-    public float minSpeedToDamage = 5f;
+    public float minSpeedToDamage = 30f;
     public float hitCooldown = 0.3f;
 
     [Header("Hit Particles")]
