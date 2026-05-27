@@ -8,7 +8,7 @@ Gracz wciela sie w postać bohatera o telekinetycznych zdolnościach, który uż
 # Licencja:
 MIT
 
-#Link do kodu:
+# Link do kodu:
 https://github.com/Jachowaty/The-gra        - kod źródłowy
 https://github.com/Jachowaty/The-gra-build  - wersja grywalna
 
