@@ -2,18 +2,18 @@ Blade whisperer
 Dynamiczna dwuwymiarowa gra akcji oferująca precyzyjne sterowanie postacią, fizyczny system walki mieczem oraz wymagające starcia z przeciwnikami i bossem.
 Gracz wciela sie w postać bohatera o telekinetycznych zdolnościach, który używa swoich mocy oraz miecza do walki z przeciwnikami i finalnie ze złym magiem.
 
-2. Jak uruchomić:
+#Jak uruchomić:
 -Po pobraniu wersji grywalnej uruchomić plik "Blade Whisperer.exe"
 
-Licencja:
+#Licencja:
 MIT
 
-Link do kodu:
+#Link do kodu:
 https://github.com/Jachowaty/The-gra        - kod źródłowy
 https://github.com/Jachowaty/The-gra-build  - wersja grywalna
 
 
-Twórcy grafik i dźwieków:
+#Twórcy grafik i dźwieków:
 
 Grafiki: 
 https://www.kenney.nl/assets/1-bit-platformer-pack
