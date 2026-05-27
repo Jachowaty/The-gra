@@ -1,5 +1,5 @@
 Blade whisperer
-Dynamiczna dwuwymiarowa gra akcji oferująca precyzyjne sterowanie postacią, fizyczny system walki mieczem oraz wymagające starcia z przeciwnikami i bossem.
+to dynamiczna dwuwymiarowa gra akcji oferująca precyzyjne sterowanie postacią, fizyczny system walki mieczem oraz wymagające starcia z przeciwnikami i bossem.
 Gracz wciela sie w postać bohatera o telekinetycznych zdolnościach, który używa swoich mocy oraz miecza do walki z przeciwnikami i finalnie ze złym magiem.
 
 # Jak uruchomić:
